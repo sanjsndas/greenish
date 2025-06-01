@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GreenishBerry - Urban Gardening Solutions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Poppins', sans-serif; background: #f0f8f5; color: #2e3a33;
+    line-height: 1.6;
+  }
+  header {
+    background: #3a7d44;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.2px;
+    user-select: none;
+  }
+  /* Hero section */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80') center center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,80,30,0.6);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .hero-content h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    letter-spacing: 2.5px;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  }
+  .hero-content p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    margin-top: 0;
+  }
+  nav {
+    background: #21572c;
+    text-align: center;
+    padding: 0.8rem 0;
+  }
+  nav button {
+    background: transparent;
+    border: none;
+    color: #a7d49b;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  nav button:hover,
+  nav button:focus {
+    background: #3a7d44;
+    outline: none;
+  }
+  main {
+    max-width: 1100px;
+    margin: 3rem auto 3rem auto;
+    padding: 0 1rem 3rem 1rem;
+  }
+  section {
+    margin-bottom: 3rem;
+  }
+  .about-us {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 8px 20px rgb(58 125 68 / 0.15);
+  }
+  .about-us h2 {
+    color: #3a7d44;
+    font-weight: 700;
+    margin-bottom: 1.3rem;
+    font-size: 2rem;
+  }
+  .about-us p {
+    font-weight: 300;
+    font-size: 1.13rem;
+    margin-bottom: 1.1rem;
+  }
+  .about-us .mission,
+  .about-us .vision,
+  .about-us .team,
+  .about-us .commitment {
+    margin-bottom: 1.8rem;
+  }
+  .additional-info {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 8px 20px rgba(58, 125, 68, 0.15);
+    font-weight: 300;
+    color: #2e3a33;
+  }
+  .additional-info h2 {
+    color: #3a7d44;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .additional-info p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .section-tips-faqs {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 8px 20px rgba(58, 125, 68, 0.15);
+  }
+  .section-tips-faqs h2 {
+    color: #3a7d44;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  .tips-list,
+  .faqs-list {
+    list-style: inside disc;
+    margin-left: 1rem;
+    font-weight: 300;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+  .tips-list li,
+  .faqs-list li {
+    margin-bottom: 0.7rem;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgb(58 125 68 / 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgb(34 99 48 / 0.3);
+  }
+  .product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .product-info {
+    padding: 1rem 1.3rem 1.3rem 1.3rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .product-info h3 {
+    margin: 0.5rem 0 0.3rem 0;
+    font-weight: 600;
+    color: #1b4d25;
+  }
+  .product-info p {
+    flex-grow: 1;
+    font-weight: 300;
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .product-info .price {
+    font-weight: 700;
+    color: #3a7d44;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .product-info button {
+    background: #3a7d44;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.85rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .product-info button:hover,
+  .product-info button:focus {
+    background: #2e6331;
+    outline: none;
+  }
+  #cart {
+    position: fixed;
+    right: 0; top: 80px;
+    background: white;
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.25);
+    width: 360px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 1.4rem 1.2rem;
+    font-size: 0.95rem;
+    z-index: 1000;
+  }
+  #cart h2 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #3a7d44;
+    border-bottom: 3px solid #3a7d44;
+    padding-bottom: 0.6rem;
+    font-size: 1.6rem;
+  }
+  #cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 1.2rem 0 1.5rem 0;
+  }
+  #cart-items li {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #cart-items li span {
+    flex: 1;
+    padding-right: 0.5rem;
+  }
+  #cart-items li button {
+    background: transparent;
+    border: none;
+    color: #d94f4f;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  #cart-total {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1.3rem;
+    text-align: right;
+    color: #3a7d44;
+  }
+  #checkout-btn {
+    display: block;
+    width: 100%;
+    background: #3a7d44;
+    color: white;
+    border: none;
+    font-weight: 800;
+    padding: 1.1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #checkout-btn:disabled {
+    background: #94c39b;
+    cursor: not-allowed;
+  }
+  #checkout-btn:hover:not(:disabled),
+  #checkout-btn:focus:not(:disabled) {
+    background: #2e6331;
+    outline: none;
+  }
+  /* Testimonials */
+  .testimonials {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 8px 20px rgba(58, 125, 68, 0.15);
+  }
+  .testimonials h2 {
+    color: #3a7d44;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  .testimonial-item {
+    font-style: italic;
+    border-left: 4px solid #3a7d44;
+    padding-left: 1rem;
+    margin-bottom: 1.6rem;
+    color: #355a3e;
+  }
+  .testimonial-author {
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    color: #1a3c1f;
+  }
+  footer {
+    background: #3a7d44;
+    color: white;
+    text-align: center;
+    padding: 1.3rem 1rem;
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+  }
+  footer .footer-btn {
+    color: #a7d49b;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  footer .footer-btn:hover,
+  footer .footer-btn:focus {
+    background: #2e6331;
+    outline: none;
+    color: white;
+  }
+  footer .copyright {
+    font-weight: 300;
+    color: #cbd7ca;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    user-select: none;
+  }
+  /* Modal styles */
+  .modal-overlay {
+    display: none;
+    position: fixed; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal {
+    background: white;
+    max-width: 680px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 1.8rem 2.5rem 2rem 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .modal h3 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #2e3a33;
+    margin-bottom: 1.1rem;
+  }
+  .modal p {
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+    color: #444;
+    font-size: 1rem;
+  }
+  .modal ul {
+    padding-left: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .modal ul li {
+    margin-bottom: 0.75rem;
+  }
+  .modal button.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 2rem;
+    color: #3a7d44;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .modal button.close-btn:hover,
+  .modal button.close-btn:focus {
+    color: #2e6331;
+    outline: none;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    #cart {
+      position: static;
+      width: 100%;
+      max-height: none;
+      border-radius: 0;
+      box-shadow: none;
+      margin-top: 2rem;
+      padding: 1rem 0.5rem;
+    }
+    nav button {
+      margin: 0 0.5rem;
+      font-size: 0.9rem;
+    }
+    header {
+      font-size: 1.1rem;
+      padding: 0.8rem;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+    header p {
+      font-size: 1rem;
+    }
+    footer {
+      font-size: 0.9rem;
+      gap: 0.6rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  GreenishBerry
+</header>
+
+<section class="hero" aria-label="Welcome banner with urban gardening image">
+  <div class="hero-content">
+    <h1>Welcome to GreenishBerry</h1>
+    <p>Your urban gardening partner to grow fresh greens effortlessly</p>
+  </div>
+</section>
+
+<nav aria-label="Primary navigation">
+  <button type="button" data-section="about">About Us</button>
+  <button type="button" data-section="products">Products</button>
+  <button type="button" data-section="tips">Gardening Tips & FAQs</button>
+  <button type="button" data-section="testimonials">Testimonials</button>
+</nav>
+
+<main>
+  <section id="about" class="about-us" aria-label="About us" tabindex="0">
+    <h2>About Us</h2>
+    <div class="mission">
+      <h3>Our Mission</h3>
+      <p>At GreenishBerry, our mission is to empower people living in cities to experience the joy and health benefits of growing their own plants, herbs, and veggies—even in tight urban spaces. We provide innovative, sustainable, and easy-to-use gardening solutions for every home.</p>
+    </div>
+    <div class="vision">
+      <h3>Our Vision</h3>
+      <p>We envision thriving urban communities connected to nature and sustainability. Small green spaces within cities can inspire healthier lifestyles and more sustainable living globally.</p>
+    </div>
+    <div class="team">
+      <h3>Meet Our Team</h3>
+      <p>Our team consists of dedicated horticulturists, sustainability advocates, and urban planning experts passionate about bridging the gap between technology and nature. Together, we bring you the best products and gardening advice suited for modern city life.</p>
+    </div>
+    <div class="commitment">
+      <h3>Commitment to Customers</h3>
+      <p>We strive for excellence in product quality, customer service, and education. From beginner tips to advanced gardening solutions, we are here to support your urban gardening journey every step of the way.</p>
+    </div>
+  </section>
+
+  <section id="products" aria-label="Product listings" tabindex="0">
+    <h2 style="color:#3a7d44; font-weight:700; margin-bottom:1rem; font-size:2rem;">Our Products</h2>
+    <div class="products">
+      <article class="product-card" tabindex="0">
+        <img src="stack.jpg" alt="Stackable Planters" />
+        <div class="product-info">
+          <h3>Stackable Vertical Planters</h3>
+          <p>Maximize your limited space with these easy-to-install vertical stackable planters crafted from eco-friendly materials. Perfect for balconies and patios.</p>
+          <p><strong>Benefits:</strong> Save space, improve air quality, and create beautiful green walls.</p>
+          <p><strong>Usage:</strong> Easy assembly with included connectors. Suitable for a variety of plants including flowers, herbs, and succulents.</p>
+          <div class="price">$39.99</div>
+          <button data-id="1" data-name="Stackable Vertical Planters" data-price="39.99">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <img src="self.jpg" alt="Self-Watering Herb Garden" />
+        <div class="product-info">
+          <h3>Self-Watering Herb Garden</h3>
+          <p>Keep your herbs hydrated effortlessly with this stylish self-watering system. Includes planter pots perfect for kitchens and small indoor spaces.</p>
+          <p><strong>Benefits:</strong> Consistent watering reduces plant stress and boosts growth.</p>
+          <p><strong>Usage:</strong> Simply fill the reservoir; water is delivered to plants as needed.</p>
+          <div class="price">$49.99</div>
+          <button data-id="2" data-name="Self-Watering Herb Garden" data-price="49.99">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <img src="compact.jpg" alt="Compact Compost Bin" />
+        <div class="product-info">
+          <h3>Compact Indoor Compost Bin</h3>
+          <p>Eco-friendly compost bin designed for indoor use. Features odor-control technology and easy emptying. Reduce waste and create rich soil naturally.</p>
+          <p><strong>Benefits:</strong> Recycle kitchen scraps into nutrient-rich compost easily.</p>
+          <p><strong>Usage:</strong> Simple to clean, odor-free design with charcoal filter.</p>
+          <div class="price">$29.99</div>
+          <button data-id="3" data-name="Compact Indoor Compost Bin" data-price="29.99">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <img src="led.jpg" alt="LED Grow Light" />
+        <div class="product-info">
+          <h3>LED Grow Light for Plants</h3>
+          <p>Optimal spectrum LED light to support your plants’ growth indoors year-round. Energy efficient with adjustable brightness settings.</p>
+          <p><strong>Benefits:</strong> Promote healthy plant growth regardless of natural light.</p>
+          <p><strong>Usage:</strong> Plug and play, adjustable timer options included.</p>
+          <div class="price">$59.99</div>
+          <button data-id="4" data-name="LED Grow Light for Plants" data-price="59.99">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="additional-info" aria-label="Additional information about urban gardening and GreenishBerry" tabindex="0">
+    <h2>Why Urban Gardening with GreenishBerry?</h2>
+    <p>Urban gardening is more than just a hobby—it's a sustainable lifestyle choice that supports healthier living and greener cities. At GreenishBerry, we offer practical solutions tailored for urban spaces of all sizes, empowering you to bring nature closer no matter where you live.</p>
+    <p>Our products are designed to be easy to use and environmentally friendly, helping you reduce food miles, enjoy fresher produce, and create calming green spaces that enhance well-being.</p>
+    <h2>Benefits of Growing Your Own Garden</h2>
+    <p>Growing your own herbs, vegetables, and flowers offers numerous benefits:</p>
+    <ul>
+      <li>Access to fresh, organic produce year-round.</li>
+      <li>Reduction of plastic waste with reusable planters and pots.</li>
+      <li>Improvement of air quality and urban biodiversity.</li>
+      <li>Stress relief and increased mindfulness through nurturing plants.</li>
+      <li>Community building by sharing plants and gardening tips with neighbors.</li>
+    </ul>
+    <h2>Get Inspired and Join Our Community</h2>
+    <p>GreenishBerry is not just a store—we're a community of urban gardeners passionate about sharing knowledge and inspiration. Stay tuned for workshops, tutorials, and events designed to help you grow confidently and sustainably in the heart of the city.</p>
+  </section>
+
+  <section id="tips" class="section-tips-faqs" aria-label="Gardening Tips and Frequently Asked Questions" tabindex="0" hidden>
+    <h2>Gardening Tips & FAQs</h2>
+    <h3>Top 7 Urban Gardening Tips</h3>
+    <ul class="tips-list">
+      <li><strong>Start Small:</strong> Begin with a few easy-to-grow plants to build confidence.</li>
+      <li><strong>Use Vertical Space:</strong> Maximize limited areas with vertical or hanging planters.</li>
+      <li><strong>Choose Plants Wisely:</strong> Select herbs and veggies suited for containers and your climate.</li>
+      <li><strong>Water Efficiently:</strong> Use self-watering systems or drip irrigation to conserve water.</li>
+      <li><strong>Light Management:</strong> Position plants to receive adequate sunlight or use grow lights.</li>
+      <li><strong>Soil Quality:</strong> Use nutrient-rich potting mix tailored for container gardening.</li>
+      <li><strong>Regular Care:</strong> Monitor plants for pests and diseases and prune as needed.</li>
+    </ul>
+
+    <h3>Frequently Asked Questions</h3>
+    <ul class="faqs-list">
+      <li><strong>Q: How much sunlight do I need for indoor plants?</strong><br/> A: Most herbs and veggies require 6-8 hours of bright, indirect sunlight. Supplement with grow lights if natural light is insufficient.</li>
+      <li><strong>Q: Can I compost indoors?</strong><br/> A: Yes! Our compact compost bin is designed for indoor use with odor control.</li>
+      <li><strong>Q: How often should I water container plants?</strong><br/> A: It varies, but typically 2-3 times per week. Self-watering planters help automate this.</li>
+      <li><strong>Q: What plants are best for small balconies?</strong><br/> A: Vertical planters work well for herbs, salad greens, cherry tomatoes, and flowers.</li>
+      <li><strong>Q: Are your products eco-friendly?</strong><br/> A: Yes, we prioritize sustainable materials and manufacture with minimal waste.</li>
+    </ul>
+  </section>
+
+  <section id="testimonials" class="testimonials" aria-label="Customer testimonials" tabindex="0" hidden>
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-item">
+      “GreenishBerry transformed my tiny balcony into a green paradise! The stackable planters are sturdy and easy to maintain!” — <span class="testimonial-author">Emily R.</span>
+    </div>
+    <div class="testimonial-item">
+      “The self-watering herb garden is a game changer. My kitchen smells amazing and I always have fresh herbs for cooking.” — <span class="testimonial-author">Jason M.</span>
+    </div>
+    <div class="testimonial-item">
+      “I've never composted before, but the indoor compost bin made it simple and odor-free. Highly recommend!” — <span class="testimonial-author">Sara T.</span>
+    </div>
+    <div class="testimonial-item">
+      “The LED grow light helped my plants thrive through winter when sunlight was scarce. Great product!” — <span class="testimonial-author">Priya K.</span>
+    </div>
+  </section>
+</main>
+
+
+
+<footer>
+  <a href="terms.html" class="footer-btn" id="terms-btn" role="button">Legal Terms</a>
+
+ <a href="privacy.html" class="footer-btn" id="terms-btn" role="button">Privacy Policy</a>
+
+  <div class="copyright" aria-label="Copyright">
+    &copy; 2024 GreenishBerry
+  </div>
+</footer>
+
+<!-- Modal for Legal Terms -->
+<div class="modal-overlay" id="terms-modal" role="dialog" aria-modal="true" aria-labelledby="terms-title" tabindex="-1">
+  <div class="modal">
+    <button class="close-btn" aria-label="Close legal terms">&times;</button>
+    <h3 id="terms-title">Legal Terms</h3>
+    <p>These legal terms govern your use of GreenishBerry website and services. By accessing or using our site, you agree to comply with these terms to ensure safe and lawful use.</p>
+    <p><strong>Usage:</strong> Our products and content are intended for personal, non-commercial use only. Unauthorized copies or resale of our content is prohibited.</p>
+    <p><strong>Disclaimer:</strong> While we strive for accuracy and high quality, GreenishBerry disclaims liability for any damage or loss resulting from use or misuse of our products or advice provided through the website.</p>
+    <p><strong>Warranty:</strong> Product warranties are provided by respective manufacturers. We act as a reseller and are not liable beyond those terms.</p>
+    <p><strong>Intellectual Property:</strong> All website content, images, logos, and trademarks are the exclusive property of GreenishBerry and protected under intellectual property laws.</p>
+    <p><strong>User Conduct:</strong> Users must not use our services for unlawful activities or infringe upon rights of others.</p>
+    <p>For complete legal information or inquiries, please contact us at info@greenishberry.com.</p>
+  </div>
+</div>
+
+<!-- Modal for Privacy Policy -->
+<div class="modal-overlay" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" tabindex="-1">
+  <div class="modal">
+    <button class="close-btn" aria-label="Close privacy policy">&times;</button>
+    <h3 id="privacy-title">Privacy Policy</h3>
+    <p>GreenishBerry is committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal information when you visit and interact with our website.</p>
+    <p><strong>Information Collection:</strong> We only collect information necessary for fulfilling orders, such as your name, email, shipping address, and payment details. We do not sell or share personal information with third parties except as required to process your orders.</p>
+    <p><strong>Cookies:</strong> Our website uses cookies for essential functionality and to improve user experience. Cookies do not contain personal information and can be managed through your browser settings.</p>
+    <p><strong>Data Security:</strong> We implement industry-standard security controls to protect your data and prevent unauthorized access or disclosure.</p>
+    <p><strong>Your Rights:</strong> You have the right to access, update, or request deletion of your personal information. Contact us via info@greenishberry.com to exercise these rights.</p>
+    <p><strong>Third-Party Services:</strong> We use trusted third-party payment processors. Please review their privacy policies for details.</p>
+    <p>By using our site, you consent to this privacy policy. If you have any questions or concerns, please reach out to us anytime.</p>
+  </div>
+</div>
+
+<script>
+  // Navigation button logic to toggle sections
+  const navButtons = document.querySelectorAll('nav button');
+  const sections = {
+    about: document.getElementById('about'),
+    products: document.getElementById('products'),
+    tips: document.getElementById('tips'),
+    testimonials: document.getElementById('testimonials'),
+  };
+
+  // Show about and products initially, hide others
+  sections.about.hidden = false;
+  sections.products.hidden = false;
+  sections.tips.hidden = true;
+  sections.testimonials.hidden = true;
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-section');
+      for (const key in sections) {
+        sections[key].hidden = (key !== target);
+      }
+      if (sections[target]) sections[target].focus();
+    });
+  });
+
+  // Cart functionality
+  const cart = {};
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('checkout-btn');
+
+  function renderCart() {
+    cartItemsEl.innerHTML = '';
+    let total = 0;
+    const keys = Object.keys(cart);
+    if (keys.length === 0) {
+      cartItemsEl.innerHTML = '<li>Your cart is empty.</li>';
+      checkoutBtn.disabled = true;
+      cartTotalEl.textContent = 'Total: $0.00';
+      return;
+    }
+    keys.forEach(id => {
+      const item = cart[id];
+      const li = document.createElement('li');
+      const spanName = document.createElement('span');
+      spanName.textContent = `${item.name} x${item.qty} - $${(item.price * item.qty).toFixed(2)}`;
+      const removeBtn = document.createElement('button');
+      removeBtn.setAttribute('aria-label', 'Remove ' + item.name);
+      removeBtn.textContent = 'X';
+      removeBtn.addEventListener('click', () => {
+        removeFromCart(id);
+      });
+      li.appendChild(spanName);
+      li.appendChild(removeBtn);
+      cartItemsEl.appendChild(li);
+      total += item.price * item.qty;
+    });
+    cartTotalEl.textContent = 'Total: $' + total.toFixed(2);
+    checkoutBtn.disabled = false;
+  }
+
+  function addToCart(id, name, price) {
+    if(cart[id]) {
+      cart[id].qty +=1;
+    } else {
+      cart[id] = {name, price, qty: 1};
+    }
+    renderCart();
+  }
+
+  function removeFromCart(id) {
+    if(cart[id]) {
+      cart[id].qty -=1;
+      if(cart[id].qty === 0) {
+        delete cart[id];
+      }
+      renderCart();
+    }
+  }
+
+  document.querySelectorAll('.product-info button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const btn = e.target;
+      const id = btn.getAttribute('data-id');
+      const name = btn.getAttribute('data-name');
+      const price = parseFloat(btn.getAttribute('data-price'));
+      addToCart(id, name, price);
+    });
+  });
+
+  checkoutBtn.addEventListener('click', () => {
+    alert('Thank you for your purchase! Your order is being processed.');
+    Object.keys(cart).forEach(key => delete cart[key]);
+    renderCart();
+  });
+
+  renderCart();
+
+  // Modal logic
+  const termsBtn = document.getElementById('terms-btn');
+  const privacyBtn = document.getElementById('privacy-btn');
+  const termsModal = document.getElementById('terms-modal');
+  const privacyModal = document.getElementById('privacy-modal');
+  const modals = [termsModal, privacyModal];
+
+  function openModal(modal) {
+    modal.classList.add('active');
+    modal.querySelector('.close-btn').focus();
+  }
+  function closeModal(modal) {
+    modal.classList.remove('active');
+  }
+
+  termsBtn.addEventListener('click', () => openModal(termsModal));
+  privacyBtn.addEventListener('click', () => openModal(privacyModal));
+
+  modals.forEach(modal => {
+    modal.querySelector('.close-btn').addEventListener('click', () => closeModal(modal));
+    modal.addEventListener('click', e => {
+      if(e.target === modal){
+        closeModal(modal);
+      }
+    });
+    // Close modal on Escape key
+    window.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal(modal);
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
