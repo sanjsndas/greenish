@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script defer data-domain="greenishberry.vercel.app" src="https://plausible.io/js/script.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GreenishBerry - Urban Gardening Solutions</title>
@@ -10,15 +9,7 @@
   * {
     box-sizing: border-box;
   }
-
-
-
-
-
-
-
-
-  
+  body {
     margin: 0; font-family: 'Poppins', sans-serif; background: #f0f8f5; color: #2e3a33;
     line-height: 1.6;
   }
@@ -474,7 +465,12 @@
   GreenishBerry
 </header>
 
-
+<section class="hero" aria-label="Welcome banner with urban gardening image">
+  <div class="hero-content">
+    <h1>Welcome to GreenishBerry</h1>
+    <p>Your urban gardening partner to grow fresh greens effortlessly</p>
+  </div>
+</section>
 
 <nav aria-label="Primary navigation">
   <button type="button" data-section="about">About Us</button>
@@ -656,14 +652,6 @@
   </div>
 </div>
 
-
-
-
-
- 
-
-
-  
 <script>
   // Navigation button logic to toggle sections
   const navButtons = document.querySelectorAll('nav button');
